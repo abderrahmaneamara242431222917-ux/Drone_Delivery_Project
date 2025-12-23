@@ -25,6 +25,6 @@ public class Map {
         return false;
     }
     public boolean isAllowed(Position p){
-        return !isForbidden(p);
+        return !this.isForbidden(p);
     }
 }

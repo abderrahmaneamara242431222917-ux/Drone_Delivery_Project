@@ -34,8 +34,8 @@ public abstract class Drone {
  public void FlyTo(Position destination){
     double dis=this.position.distanceTo(destination);
     double consumption=this.calculateConsumption(dis);
-    this.battery-=consumption;
-    this.totalDistance+=dis;
+    this.battery=this.battery-consumption;
+    this.totalDistance=this.totalDistance+dis;
     this.position=destination;
     this.positionHistory.add(destination);
  }

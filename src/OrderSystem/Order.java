@@ -1,4 +1,5 @@
 package OrderSystem;
+import DroneHierarchi.Drone;
 public class Order {
   private int id;
   private String client;
@@ -6,6 +7,7 @@ public class Order {
   private double cost;
   private String urgency;
   private String status;
+  private Drone drone;
   private static int counter=0;
   public Order(String client,Deliverable deliverable,double cost,String urgency){
     this.id= ++counter;
@@ -39,5 +41,11 @@ public class Order {
   }
   public void setstatus(String status){
     this.status=status;
+  }
+  public Drone getdrone(){
+    return this.drone;
+  }
+  public void setdrone(Drone d){
+    this.drone=d;
   }
 }

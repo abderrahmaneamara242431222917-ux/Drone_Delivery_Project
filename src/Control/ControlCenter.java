@@ -27,6 +27,9 @@ public class ControlCenter {
   public void addDrone(Drone d){
     this.fleet.add(d);
   }
+  public void addpindingorder(Order order){
+    this.pendingOrders.add(order);
+  }
   public Drone findDroneForOrder(Order order){
     for(Drone d : this.fleet){
         if(d.getstuts().compareTo("AVAILABLE")!=0){
@@ -58,38 +61,36 @@ public class ControlCenter {
     return operationCost+insurance;
   }
   public boolean assignOrder(Order order){
-    Drone dr=findDroneForOrder(order);
+    order.setdrone(this.findDroneForOrder(order));
+    Drone dr=order.getdrone();
     if(dr==null){
-        this.pendingOrders.add(order);
         return false;
     }
-    double cost=calculateDeliveryCost(order, dr)+order.getcost();
+    double cost=this.calculateDeliveryCost(order, dr)+order.getcost();
     order.setcost(cost);
     order.setstatus("IN PROGRESS");
     dr.setstatus("IN DELIVERY");
     this.processedOrerds.add(order);
+    this.pendingOrders.remove(order);
     return true;
   }
   public void completedDelivery(Drone dr,Order order){
-    dr.FlyTo(order.getdeliverable().getDestination());
     order.setstatus("DELIVERED");
     dr.setstatus("RETURN TO BASE");
     this.processedOrerds.remove(order);
     numberOfDeliveries++;
   }
   public void returnToBase(Drone dr){
-    dr.FlyTo(this.base);
     dr.setstatus("AVAILABLE");
   }
   public void failOrder(Order order,Drone dr){
-    dr.FlyTo(order.getdeliverable().getDestination());
     order.setstatus("FAILED");
     dr.setstatus("RETURN TO BASE");
     this.pendingOrders.add(order);
     this.processedOrerds.remove(order);
   }
   public List<Order> getpendingOrders(){
-    return pendingOrders;
+    return this.pendingOrders;
   }
   public int getnumberOfDeleveres(){
     return numberOfDeliveries;
@@ -123,5 +124,11 @@ public class ControlCenter {
       }
     }
     return energyHeavy;
+  }
+  public Map getmap(){
+    return this.map;
+  }
+  public Position getbase(){
+    return this.base;
   }
 }

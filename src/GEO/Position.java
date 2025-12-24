@@ -23,16 +23,15 @@ public class Position {
         double dy=other.y - this.y;
         return Math.sqrt(dx*dx + dy*dy);
     }
-    public void moveTo(Position distination,double step){
+    public Position moveTo(Position distination,double step){
         double distance=this.distanceTo(distination);
         if(distance<=step){
-            this.x=distination.x;
-            this.y=distination.y;
-            return;
+        Position p=new Position(distination.x,distination.y );
+         return p;
         }
         double scale=step/distance;
-        this.x=this.x+(distination.x - this.x)*scale;
-        this.y=this.y+(distination.y - this.y)*scale;
+        Position p=new Position(this.x+(distination.x - this.x)*scale,this.y+(distination.y - this.y)*scale );
+        return p;
     }
     public String toString(){
         return "position("+this.x+" , "+this.y+")";

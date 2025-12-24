@@ -25,4 +25,19 @@ public class Order {
         return 0;
     }
   }
+  public Deliverable getdeliverable(){
+    return this.deliverable;
+  }
+  public double getcost(){
+    return this.cost;
+  }
+  public String geturgency(){
+    return this.urgency;
+  }
+  public void setcost(double cost){
+    this.cost=cost;
+  }
+  public void setstatus(String status){
+    this.status=status;
+  }
 }

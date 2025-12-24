@@ -58,4 +58,22 @@ public abstract class Drone {
  public double getbattery(){
     return this.battery;
  }
+ public String getstuts(){
+   return this.status;
+ }
+ public double getcapacity(){
+   return this.capacity;
+ }
+ public Position getposition(){
+   return this.position;
+ }
+ public String getmodel(){
+   return this.model;
+ }
+ public void setstatus(String stut){
+   this.status=stut;
+ }
+ public double gettotaldistance(){
+   return this.totalDistance;
+ }
 }
